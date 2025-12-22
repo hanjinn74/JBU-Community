@@ -7,13 +7,11 @@ const jwt = require('jsonwebtoken');
 // --- [창구 1: 회원가입 API] ---
 router.post('/register', async (req, res) => {
   try {
-    // 1. (수정) nickname도 같이 받기
     const { email, password, nickname } = req.body;
 
-    // 2. 이메일 중복 검사
-    const existingEmail = await User.findOne({ email });
-    if (existingEmail) {
-      return res.status(400).send('이미 사용 중인 이메일입니다.');
+    // (NEW!) 백엔드에서도 도메인 체크
+    if (!email.endsWith('@jmail.ac.kr')) {
+       return res.status(400).send('학교 이메일(@jmail.ac.kr)만 사용 가능합니다.');
     }
 
     // 3. (NEW!) 닉네임 중복 검사

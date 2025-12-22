@@ -28,6 +28,11 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault(); 
 
+    if (!formData.email.endsWith('@jmail.ac.kr')) {
+      alert("중부대학교 웹메일로만 가입할 수 있습니다.");
+      return;
+    }
+
     // 2. (수정) 닉네임도 유효성 검사
     if (!formData.email || !formData.password || !formData.nickname) {
       alert('모든 칸을 입력해주세요.');
