@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button'; 
-// (NEW!) 학교 아이콘 느낌을 위한 학사모 아이콘
-import SchoolIcon from '@mui/icons-material/School'; 
+// SchoolIcon import는 더 이상 필요 없으므로 삭제해도 됩니다.
+// import SchoolIcon from '@mui/icons-material/School'; 
 
 function Layout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,6 +16,7 @@ function Layout() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // sessionStorage 사용
     const token = sessionStorage.getItem('token');
     const savedNickname = sessionStorage.getItem('nickname');
     
@@ -38,14 +39,13 @@ function Layout() {
   return (
     <Box sx={{ backgroundColor: '#f5f7fa', minHeight: '100vh' }}>
       
-      {/* 1. (디자인) 그라데이션 상단바 */}
       <AppBar position="static" elevation={0} sx={{ 
-        background: 'linear-gradient(90deg, #4b6cb7 0%, #182848 100%)', // 세련된 네이비/블루 그라데이션
+        background: 'linear-gradient(90deg, #4b6cb7 0%, #182848 100%)',
         paddingY: 1 
       }}>
         <Toolbar>
           
-          {/* 2. (디자인) 로고 강조 */}
+          {/* 로고 영역 */}
           <Box 
             component={Link} 
             to="/" 
@@ -57,7 +57,15 @@ function Layout() {
               mr: 3 
             }}
           >
-            <SchoolIcon sx={{ mr: 1, fontSize: 32 }} />
+            {/* (NEW!) 이미지 로고 사용 */}
+            {/* client/public/logo.png 파일이 있어야 합니다. */}
+            <img 
+              src="/logo.png" 
+              alt="JBU Community Logo" 
+              style={{ height: '40px', marginRight: '10px' }} 
+            />
+            
+            {/* 텍스트 로고 유지 */}
             <Typography variant="h5" sx={{ fontWeight: 800, letterSpacing: '-0.5px' }}>
               JBU-Community
             </Typography>
