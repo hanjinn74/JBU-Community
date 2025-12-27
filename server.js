@@ -8,6 +8,7 @@ const userRoutes = require('./routes/User');
 const meetingRoutes = require('./routes/Meeting');
 const sportsRoutes = require('./routes/Sports');
 const commentRoutes = require('./routes/Comment');
+const authCodeRoutes = require('./routes/AuthCode');
 //const carpoolRoutes = require('./routes/Carpool'); //카풀 부서 불러오기(routes/Carpool.js)
 //왜 얘를 못 찾지
 
@@ -17,7 +18,7 @@ const app = express();
 const port = 5000; // 리택트 기본 포트 3000과 겹치지 않게
 //*JSON 번역(파싱)기 장착
 app.use(express.json());
-
+app.use('/api/auth', authCodeRoutes);
 //MongoDB Atlas 연결 <password> C1.txt
 
 
